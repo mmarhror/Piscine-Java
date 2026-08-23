@@ -6,7 +6,13 @@ public class CleanExtract {
     public static String extract(String s) {
         ArrayList<String> res = new ArrayList<>();
 
-        for (String word : s.split("\\|")) {
+        String[] words = s.split("\\|");
+
+        if (words.length == 1) {
+            return s;
+        }
+
+        for (String word : words) {
             int f = word.indexOf('.');
             int l = word.lastIndexOf('.');
 
@@ -17,7 +23,7 @@ public class CleanExtract {
 
             if (f < l) {
                 String extracted = word.substring(f + 1, l).trim();
-                
+
                 if (!extracted.isEmpty()) {
                     res.add(extracted);
                 }
