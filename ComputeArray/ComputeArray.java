@@ -8,7 +8,7 @@ public class ComputeArray {
 
         int[] res = new int[array.length];
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < array.length; i++) {
             int a = array[i];
             res[i] = switch (a % 3) {
                 case 0 ->
