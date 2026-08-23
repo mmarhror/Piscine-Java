@@ -15,8 +15,12 @@ public class CleanExtract {
                 continue;
             }
 
-            if (f != -1 && f < l) {
-                res.add(word.substring(f + 1, l).trim());
+            if (f < l) {
+                String extracted = word.substring(f + 1, l).trim();
+                
+                if (!extracted.isEmpty()) {
+                    res.add(extracted);
+                }
             }
         }
 
