@@ -10,11 +10,12 @@ public class CleanExtract {
             int f = word.indexOf('.');
             int l = word.lastIndexOf('.');
 
-            if (f == -1) {
+            if (f == -1 && !word.trim().isEmpty()) {
                 res.add(word.trim());
+                continue;
             }
 
-            if (f != -1 && l != -1 && f < l) {
+            if (f != -1 && f < l) {
                 res.add(word.substring(f + 1, l).trim());
             }
         }
