@@ -4,30 +4,28 @@ import java.util.ArrayList;
 public class CleanExtract {
 
     public static String extract(String s) {
-        if (s == null || s.isEmpty()) {
-            return "";
-        }
-
         ArrayList<String> res = new ArrayList<>();
-        String[] segments = s.split("\\|");
 
-        for (String segment : segments) {
-            int firstDot = segment.indexOf('.');
-            int lastDot = segment.lastIndexOf('.');
+        String[] words = s.split("\\|");
 
-            String extracted = "";
+        for (String word : words) {
+            int f = word.indexOf('.');
+            int l = word.lastIndexOf('.');
 
-            if (firstDot == -1) {
-                // No dots at all in this segment
-                extracted = segment.trim();
-            } else if (firstDot < lastDot) {
-                // At least two dots: extract between first and last dot
-                extracted = segment.substring(firstDot + 1, lastDot).trim();
+            String w = "";
+
+            if (f == -1) {
+                w = word.trim();
+            } else {
+                if (f == 0) {
+                    w = word.substring(1).trim();
+                } else if (l == word.length() - 1) {
+                    w = word.substring(0, l).trim();
+                }
             }
 
-            // Only add if there is actual content (avoids extra spaces)
-            if (!extracted.isEmpty()) {
-                res.add(extracted);
+            if (!w.trim().isEmpty()) {
+                res.add(w.trim());
             }
         }
 
