@@ -10,7 +10,7 @@ public class CleanExtract {
             int f = word.indexOf('.');
             int l = word.lastIndexOf('.');
 
-            if (f == -1 && l == -1) {
+            if (f == -1) {
                 res.add(word.trim());
             }
 
