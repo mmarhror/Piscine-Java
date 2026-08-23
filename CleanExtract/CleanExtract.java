@@ -16,6 +16,8 @@ public class CleanExtract {
 
             if (f == -1) {
                 w = word.trim();
+            } else if (f < l) {
+                w = word.substring(f + 1, l).trim();
             } else {
                 if (f == 0) {
                     w = word.substring(1).trim();
@@ -24,8 +26,8 @@ public class CleanExtract {
                 }
             }
 
-            if (!w.trim().isEmpty()) {
-                res.add(w.trim());
+            if (!w.isEmpty()) {
+                res.add(w);
             }
         }
 
