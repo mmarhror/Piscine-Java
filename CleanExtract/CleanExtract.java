@@ -16,13 +16,20 @@ public class CleanExtract {
 
             if (f == -1) {
                 w = word.trim();
+
             } else if (f < l) {
                 w = word.substring(f + 1, l).trim();
+
             } else {
                 if (f == 0) {
                     w = word.substring(1).trim();
+
                 } else if (l == word.length() - 1) {
                     w = word.substring(0, l).trim();
+
+                } else {
+                    w = word.substring(f + 1).trim();
+
                 }
             }
 
