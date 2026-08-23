@@ -9,7 +9,7 @@ public class CleanExtract {
         String[] words = s.split("\\|");
 
         if (words.length == 1) {
-            return s;
+            return s.replace(".", "");
         }
 
         for (String word : words) {
