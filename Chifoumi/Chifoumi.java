@@ -7,7 +7,7 @@ public class Chifoumi {
                 ChifoumiAction.PAPER;
             case PAPER ->
                 ChifoumiAction.SCISSOR;
-            case SCISSOR ->
+            default ->
                 ChifoumiAction.ROCK;
         };
     }
