@@ -5,6 +5,10 @@ public class Star extends CelestialObject {
 
     private double magnitude;
 
+    public Star() {
+        super();
+    }
+
     public Star(String name, double x, double y, double z, double magnitude) {
         super(name, x, y, z);
         this.magnitude = magnitude;
@@ -20,7 +24,7 @@ public class Star extends CelestialObject {
 
     @Override
     public String toString() {
-        return String.format("%s shines at the %,3f magnitude", name, magnitude);
+        return String.format("%s shines at the %.3f magnitude", name, magnitude);
     }
 
     @Override
