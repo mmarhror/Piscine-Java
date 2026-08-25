@@ -11,7 +11,7 @@ public class SortArgs {
                 }
             }
         }
-        System.out.println(String.join(" ", args) + "\n");
+        System.out.println(String.join(" ", args));
     }
 
     static boolean biggerNum(String a, String b) {
