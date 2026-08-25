@@ -15,35 +15,31 @@ public class Capitalize {
 
         String content = new String(Files.readAllBytes(Paths.get(src)));
 
-        OutputStream out = new FileOutputStream(dest);
-        out.write(cap(content).getBytes());
-
+        // Try-with-resources closes the output stream automatically
+        try (OutputStream out = new FileOutputStream(dest)) {
+            out.write(cap(content).getBytes());
+        }
     }
 
     static String cap(String in) {
         in = in.toLowerCase();
-
         boolean capital = true;
-
-        String res = "";
+        StringBuilder res = new StringBuilder();
 
         for (int i = 0; i < in.length(); i++) {
             char ch = in.charAt(i);
 
             if (!Character.isLetterOrDigit(ch)) {
-                res += ch;
-                capital = true;
-
+                res.append(ch); // Keeps spaces, newlines, and punctuation exactly as they are
+                capital = true; // Next letter should be capitalized
             } else if (Character.isLetter(ch) && capital) {
-                res += Character.toUpperCase(ch);
-                capital = false;
-
+                res.append(Character.toUpperCase(ch));
+                capital = false; // Turn off capital until we hit a non-alphanumeric char
             } else {
-                res += ch;
+                res.append(ch);
             }
-
         }
 
-        return String.join(" ", res.trim().split("\\s+"));
+        return res.toString();
     }
 }
