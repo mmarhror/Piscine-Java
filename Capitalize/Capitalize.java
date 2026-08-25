@@ -2,6 +2,7 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Capitalize {
 
@@ -15,32 +16,24 @@ public class Capitalize {
 
         String content = new String(Files.readAllBytes(Paths.get(src)));
 
-        // Try-with-resources guarantees the file is closed and saved correctly
-        try (OutputStream out = new FileOutputStream(dest)) {
-            out.write(cap(content).getBytes());
-        }
+        OutputStream out = new FileOutputStream(dest);
+        out.write(cap(content).getBytes());
+
     }
 
     static String cap(String in) {
-        StringBuilder res = new StringBuilder();
-        boolean capital = true;
+        in = in.toLowerCase();
 
-        for (int i = 0; i < in.length(); i++) {
-            char ch = in.charAt(i);
+        String[] words = in.split(" ");
 
-            if (!Character.isLetterOrDigit(ch)) {
-                res.append(ch); // Keeps spaces, tabs, newlines, and punctuation exactly as they are
-                capital = true; // Marks the start of a potential new word
-            } else {
-                if (capital) {
-                    res.append(Character.toUpperCase(ch));
-                    capital = false; // Toggled immediately (even if 'ch' is a digit like in "1337hello")
-                } else {
-                    res.append(Character.toLowerCase(ch));
-                }
+        ArrayList<String> res = new ArrayList<>();
+
+        for (String w : words) {
+            if (!w.isEmpty()) {
+                res.add(w.substring(0, 1).toUpperCase() + w.substring(1).toLowerCase());
             }
         }
 
-        return res.toString();
+        return String.join(" ", res);
     }
 }
