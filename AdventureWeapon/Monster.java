@@ -19,7 +19,7 @@ public class Monster extends Character {
             msg = String.format("%s is a monster with %d HP.", name, health);
         }
 
-        return msg + String.format(" He has the weapon %s.", weapon.toString());
+        return msg + String.format(" He has the weapon %s.", this.getWeapon().toString());
     }
 
     // Fight
@@ -38,7 +38,9 @@ public class Monster extends Character {
 
     @Override
     public void attack(Character ch) {
-        int dmg = this.weapon == null ? 7 : this.weapon.getDamage();
+        Weapon weapon = this.getWeapon();
+
+        int dmg = weapon == null ? 7 : weapon.getDamage();
         ch.takeDamage(dmg);
     }
 

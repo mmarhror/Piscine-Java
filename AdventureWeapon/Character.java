@@ -8,7 +8,7 @@ public abstract class Character {
     private final int maxHealth;
     private int currentHealth;
 
-    protected Weapon weapon;
+    private Weapon weapon;
 
     private static List<Character> allCharacters = new ArrayList<>();
 
@@ -36,6 +36,10 @@ public abstract class Character {
 
     protected void setCurrentHealth(int health) {
         currentHealth = health;
+    }
+
+    public Weapon getWeapon() {
+        return this.weapon;
     }
 
     // Formatters
