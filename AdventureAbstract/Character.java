@@ -27,11 +27,11 @@ public abstract class Character {
         return maxHealth;
     }
 
-    protected int getCurrentHealth() {
+    public int getCurrentHealth() {
         return currentHealth;
     }
 
-    public void setCurrentHealth(int health) {
+    protected void setCurrentHealth(int health) {
         currentHealth = health;
     }
 
