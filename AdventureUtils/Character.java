@@ -20,7 +20,7 @@ public class Character {
 
     public static String printStatus() {
         if (allCharacters.isEmpty()) {
-            return "------------------------------------------\nNobody's fighting right now !\n------------------------------------------";
+            return "------------------------------------------\nNobody's fighting right now !\n";
         }
 
         String fmt = "------------------------------------------\nCharacters currently fighting :\n";
