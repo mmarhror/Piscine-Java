@@ -9,7 +9,7 @@ public class DeadCharacterException extends Exception {
 
     @Override
     public String getMessage() {
-        String className = this.character.getClass().getSimpleName();
+        String className = this.character.getClass().getSimpleName().toLowerCase();
 
         return String.format("The %s %s is dead.", className, character.getName());
     }
