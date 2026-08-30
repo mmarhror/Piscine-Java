@@ -27,7 +27,7 @@ public abstract class Character {
         return maxHealth;
     }
 
-    public int getCurrentHealth() {
+    protected int getCurrentHealth() {
         return currentHealth;
     }
 
