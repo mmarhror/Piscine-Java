@@ -31,11 +31,12 @@ public class Sorcerer extends Character implements Healer {
     @Override
     public String toString() {
         String name = this.getName();
+        int currentHealth = this.getCurrentHealth();
 
         if (currentHealth == 0) {
             return String.format("%s is a dead sorcerer. So bad, it could heal %d HP.", name, healCapacity);
         }
-        return String.format("%s is a sorcerer with %d HP. It can heal %d HP.", name, this.currentHealth, healCapacity);
+        return String.format("%s is a sorcerer with %d HP. It can heal %d HP.", name, currentHealth, healCapacity);
     }
 
 }
