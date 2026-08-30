@@ -45,8 +45,7 @@ public class Character {
             return """
                     ------------------------------------------
                     Nobody's fighting right now 
-                    ------------------------------------------
-                    """;
+                    ------------------------------------------""";
         }
 
         String fmt = """
@@ -58,7 +57,7 @@ public class Character {
             fmt += String.format(" - %s\n", ch.toString());
         }
 
-        return fmt + "------------------------------------------\n";
+        return fmt + "------------------------------------------";
     }
 
     // Fight
