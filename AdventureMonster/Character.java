@@ -42,16 +42,13 @@ public class Character {
 
     public static String printStatus() {
         if (allCharacters.isEmpty()) {
-            return """
-                    ------------------------------------------
-                    Nobody's fighting right now 
-                    ------------------------------------------""";
+            return "------------------------------------------\n"
+                    + "Nobody's fighting right now \n"
+                    + "------------------------------------------";
         }
 
-        String fmt = """
-        ------------------------------------------
-        Characters currently fighting :
-        """;
+        String fmt = "------------------------------------------\n"
+                + "Characters currently fighting : \n";
 
         for (Character ch : allCharacters) {
             fmt += String.format(" - %s\n", ch.toString());
