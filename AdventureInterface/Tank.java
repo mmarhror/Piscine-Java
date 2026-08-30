@@ -1,0 +1,5 @@
+
+interface Tank {
+
+    int getShield();
+}
