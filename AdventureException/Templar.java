@@ -35,13 +35,21 @@ public class Templar extends Character implements Healer, Tank {
             msg = String.format("%s is a strong Templar with %d HP. It can heal %d HP and has a shield of %d.", name, health, healCapacity, shield);
         }
 
-        return msg + String.format(" He has the weapon %s.", this.getWeapon().toString());
+        if (this.getWeapon() != null) {
+            return msg + String.format(" He has the weapon %s.", this.getWeapon().toString());
+        }
+        return msg;
     }
 
     // Fight
     @Override
-    public void takeDamage(int dmg) {
+    public void takeDamage(int dmg) throws DeadCharacterException {
+
         int health = this.getCurrentHealth();
+
+        if (health == 0) {
+            throw new DeadCharacterException(this);
+        }
 
         int res = (health + shield) - dmg;
 
@@ -53,7 +61,15 @@ public class Templar extends Character implements Healer, Tank {
     }
 
     @Override
-    public void attack(Character ch) {
+    public void attack(Character ch) throws DeadCharacterException {
+        if (this.getCurrentHealth() == 0) {
+            throw new DeadCharacterException(this);
+        }
+
+        if (ch.getCurrentHealth() == 0) {
+            throw new DeadCharacterException(ch);
+        }
+
         this.heal(this);
 
         Weapon weapon = this.getWeapon();
@@ -62,8 +78,14 @@ public class Templar extends Character implements Healer, Tank {
     }
 
     @Override
-    public void heal(Character ch) {
+    public void heal(Character ch) throws DeadCharacterException {
+
         int health = ch.getCurrentHealth();
+
+        if (health == 0) {
+            throw new DeadCharacterException(ch);
+        }
+
         int max = ch.getMaxHealth();
         int res = health + healCapacity;
         if (res > max) {
