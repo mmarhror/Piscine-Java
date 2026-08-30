@@ -86,13 +86,11 @@ public abstract class Character {
             }
 
         } catch (DeadCharacterException e) {
-            if (c2.currentHealth == 0) {
-                return c1;
-            }
-
             if (c1.currentHealth == 0) {
                 return c2;
             }
+
+            return c1;
         }
     }
 }
