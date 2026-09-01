@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SortList {
@@ -8,9 +9,11 @@ public class SortList {
             return null;
         }
 
-        list.sort((a, b) -> a - b);
+        List<Integer> res = new ArrayList<>(list);
 
-        return list;
+        res.sort((a, b) -> a - b);
+        return res;
+
     }
 
     public static List<Integer> sortReverse(List<Integer> list) {
@@ -18,8 +21,10 @@ public class SortList {
             return null;
         }
 
-        list.sort((a, b) -> b - a);
+        List<Integer> res = new ArrayList<>(list);
 
-        return list;
+        res.sort((a, b) -> b - a);
+        return res;
+
     }
 }
