@@ -1,5 +1,4 @@
 
-import java.util.Collections;
 import java.util.List;
 
 public class SortList {
@@ -9,7 +8,7 @@ public class SortList {
             return null;
         }
 
-        list.sort(Integer::compareTo);
+        list.sort((a, b) -> a - b);
 
         return list;
     }
@@ -19,8 +18,7 @@ public class SortList {
             return null;
         }
 
-        list = sort(list);
-        Collections.reverse(list);
+        list.sort((a, b) -> b - a);
 
         return list;
     }
