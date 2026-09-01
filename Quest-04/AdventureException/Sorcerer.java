@@ -28,21 +28,13 @@ public class Sorcerer extends Character implements Healer {
             msg = String.format("%s is a sorcerer with %d HP. It can heal %d HP.", name, health, healCapacity);
         }
 
-        if (this.getWeapon() != null) {
-            return msg + String.format(" He has the weapon %s.", this.getWeapon().toString());
-        }
-        return msg;
+        return msg + String.format(" He has the weapon %s.", this.getWeapon().toString());
     }
 
     // Fight
     @Override
-    public void takeDamage(int dmg) throws DeadCharacterException {
-
+    public void takeDamage(int dmg) {
         int health = this.getCurrentHealth();
-
-        if (health == 0) {
-            throw new DeadCharacterException(this);
-        }
 
         int res = health - dmg;
 
@@ -54,15 +46,7 @@ public class Sorcerer extends Character implements Healer {
     }
 
     @Override
-    public void attack(Character ch) throws DeadCharacterException {
-        if (this.getCurrentHealth() == 0) {
-            throw new DeadCharacterException(this);
-        }
-
-        if (ch.getCurrentHealth() == 0) {
-            throw new DeadCharacterException(ch);
-        }
-
+    public void attack(Character ch) {
         this.heal(this);
 
         Weapon weapon = this.getWeapon();
@@ -71,17 +55,8 @@ public class Sorcerer extends Character implements Healer {
     }
 
     @Override
-    public void heal(Character ch) throws DeadCharacterException {
+    public void heal(Character ch) {
         int health = ch.getCurrentHealth();
-
-        if (this.getCurrentHealth() == 0) {
-            throw new DeadCharacterException(this);
-        }
-
-        if (health == 0) {
-            throw new DeadCharacterException(ch);
-        }
-
         int max = ch.getMaxHealth();
 
         int res = health + healCapacity;

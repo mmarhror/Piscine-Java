@@ -19,21 +19,13 @@ public class Monster extends Character {
             msg = String.format("%s is a monster with %d HP.", name, health);
         }
 
-        if (this.getWeapon() != null) {
-            return msg + String.format(" He has the weapon %s.", this.getWeapon().toString());
-        }
-        return msg;
+        return msg + String.format(" He has the weapon %s.", this.getWeapon().toString());
     }
 
     // Fight
     @Override
-    public void takeDamage(int dmg) throws DeadCharacterException {
-
+    public void takeDamage(int dmg) {
         int health = this.getCurrentHealth();
-
-        if (health == 0) {
-            throw new DeadCharacterException(this);
-        }
 
         int res = health - (int) Math.floor(dmg * 0.8);
 
@@ -45,15 +37,7 @@ public class Monster extends Character {
     }
 
     @Override
-    public void attack(Character ch) throws DeadCharacterException {
-        if (this.getCurrentHealth() == 0) {
-            throw new DeadCharacterException(this);
-        }
-
-        if (ch.getCurrentHealth() == 0) {
-            throw new DeadCharacterException(ch);
-        }
-
+    public void attack(Character ch) {
         Weapon weapon = this.getWeapon();
 
         int dmg = weapon == null ? 7 : weapon.getDamage();
