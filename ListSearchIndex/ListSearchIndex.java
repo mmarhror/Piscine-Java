@@ -21,10 +21,6 @@ public class ListSearchIndex {
             }
         }
 
-        if (ms.isEmpty()) {
-            return null;
-        }
-
         return ms;
     }
 }
