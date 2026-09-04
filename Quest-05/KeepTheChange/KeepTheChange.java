@@ -1,47 +1,58 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 
 public class KeepTheChange {
 
-    public static List<Integer> computeChange(int amount, Set<Integer> coins) {
-        List<Integer> res = new ArrayList<>();
+    static class State {
 
-        if (amount == 0 || coins == null || coins.isEmpty()) {
-            return res;
+        int remaining;
+        List<Integer> coinsUsed;
+
+        State(int amount, List<Integer> coinsUsed) {
+            this.remaining = amount;
+            this.coinsUsed = coinsUsed;
         }
 
-        int[] minCoins = new int[amount + 1];
-        int[] lastCoins = new int[amount + 1];
+    }
 
-        Arrays.fill(minCoins, Integer.MAX_VALUE);
-        minCoins[0] = 0;
+    public static List<Integer> computeChange(int amount, Set<Integer> coins) {
+        if (amount <= 0 || coins == null || coins.isEmpty()) {
+            return new ArrayList<>();
+        }
 
-        for (int num = 1; num <= amount; num++) {
+        Queue<State> queue = new LinkedList<>();
+        boolean[] seen = new boolean[amount + 1];
+
+        queue.add(new State(amount, new ArrayList<>()));
+        seen[amount] = true;
+
+        while (!queue.isEmpty()) {
+            State state = queue.poll();
+
             for (int coin : coins) {
-                if (num - coin >= 0) {
-                    int rem = num - coin;
-                    if (minCoins[rem] + 1 < minCoins[num]) {
-                        minCoins[num] = minCoins[rem] + 1;
-                        lastCoins[num] = coin;
-                    }
+                int rem = state.remaining - coin;
+
+                List<Integer> coinsUsed = new ArrayList<>(state.coinsUsed);
+                coinsUsed.add(coin);
+
+                if (rem == 0) {
+                    coinsUsed.sort((a, b) -> b - a);;
+                    return coinsUsed;
                 }
+
+                if (rem > 0 && !seen[rem]) {
+                    seen[rem] = true;
+                    queue.add(new State(rem, coinsUsed));
+                }
+
             }
         }
 
-        int current = amount;
-
-        while (current > 0) {
-            int coin = lastCoins[current];
-            res.add(coin);
-            current -= coin;
-        }
-
-        res.sort((a, b) -> b - a);
-
-        return res;
+        return new ArrayList<>();
     }
 
 }
