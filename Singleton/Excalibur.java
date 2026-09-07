@@ -1,18 +1,18 @@
 
 class Excalibur {
 
-    String name;
+    private String name;
     private static Excalibur INSTANCE;
 
     private Excalibur(String name) {
         this.name = name;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    private static Excalibur getInstance() {
+    public static Excalibur getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Excalibur("Sword");
         }
