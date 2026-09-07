@@ -1,3 +1,4 @@
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -6,31 +7,39 @@ import java.time.format.DateTimeFormatterBuilder;
 
 public class ParseDate {
 
-  public static LocalDateTime parseIsoFormat(String stringDate) {
-    return LocalDateTime.parse(stringDate);
-  }
+    public static LocalDateTime parseIsoFormat(String stringDate) {
+        if (stringDate == null) {
+            return null;
+        }
 
-  public static LocalDate parseFullTextFormat(String stringDate) {
-    if (stringDate == null) {
-      return null;
+        return LocalDateTime.parse(stringDate);
     }
-    
-    DateTimeFormatter fmt =
-        new DateTimeFormatterBuilder()
-            .parseCaseInsensitive()
-            .appendPattern("EEEE dd MMMM yyyy")
-            .toFormatter();
 
-    return LocalDate.parse(stringDate, fmt);
-  }
+    public static LocalDate parseFullTextFormat(String stringDate) {
+        if (stringDate == null) {
+            return null;
+        }
 
-  public static LocalTime parseTimeFormat(String stringDate) {
-    stringDate =
+        DateTimeFormatter fmt
+                = new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
+                        .appendPattern("EEEE dd MMMM yyyy")
+                        .toFormatter();
+
+        return LocalDate.parse(stringDate, fmt);
+    }
+
+    public static LocalTime parseTimeFormat(String stringDate) {
+        if (stringDate == null) {
+            return null;
+        }
+
         stringDate
-            .replace(" hours in the evening, ", ":")
-            .replace(" minutes and ", ":")
-            .replace(" seconds", "");
+                = stringDate
+                        .replace(" hours in the evening, ", ":")
+                        .replace(" minutes and ", ":")
+                        .replace(" seconds", "");
 
-    return LocalTime.parse(stringDate);
-  }
+        return LocalTime.parse(stringDate);
+    }
 }
