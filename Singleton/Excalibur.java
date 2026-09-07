@@ -1,10 +1,10 @@
 
-public class Excalibur {
+class Excalibur {
 
     String name;
     public static Excalibur INSTANCE;
 
-    Excalibur(String name) {
+    private Excalibur(String name) {
         this.name = name;
     }
 
