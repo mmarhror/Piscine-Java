@@ -36,14 +36,14 @@ public class RegexReplace {
                     } else {
                         sb.append(c);
                     }
-                    // Start hiding characters AFTER we encounter a separator
                     if (c == '-' || c == '.' || c == '_') {
                         hide = true;
                     }
                 }
                 name = sb.toString();
             } else if (name.length() > 3) {
-                name = name.replaceAll("^.{3}", "***");
+                // Keep first 3 characters, hide the rest
+                name = name.substring(0, 3) + name.substring(3).replaceAll(".", "*");
             }
 
             // 2. Obfuscate Domain
