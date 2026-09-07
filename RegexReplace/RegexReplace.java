@@ -8,6 +8,7 @@ public class RegexReplace {
         if (s == null) {
             return null;
         }
+        // Match 'cm' or '€' preceded by a digit and followed by a space OR end of string ($)
         return s.replaceAll("(?<=[0-9])(cm|€)(?=\\s|$)", "");
     }
 
@@ -16,9 +17,7 @@ public class RegexReplace {
             return null;
         }
 
-        String domainPat = "[a-zA-Z0-9.]+";
-
-        Pattern pat = Pattern.compile((String.format("([a-zA-Z0-9._-]+)@(%s)", domainPat)));
+        Pattern pat = Pattern.compile("([a-zA-Z0-9._-]+)@([a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)+)");
         Matcher matcher = pat.matcher(s);
 
         StringBuilder res = new StringBuilder();
@@ -27,12 +26,27 @@ public class RegexReplace {
             String name = matcher.group(1);
             String domain = matcher.group(2);
 
+            // 1. Obfuscate Username
             if (name.contains(".") || name.contains("-") || name.contains("_")) {
-                name = name.replaceAll("(?<=[._-]).|.(?=[._-])", "*");
+                StringBuilder sb = new StringBuilder();
+                boolean hide = false;
+                for (char c : name.toCharArray()) {
+                    if (hide) {
+                        sb.append('*');
+                    } else {
+                        sb.append(c);
+                    }
+                    // Start hiding characters AFTER we encounter a separator
+                    if (c == '-' || c == '.' || c == '_') {
+                        hide = true;
+                    }
+                }
+                name = sb.toString();
             } else if (name.length() > 3) {
                 name = name.replaceAll("^.{3}", "***");
             }
 
+            // 2. Obfuscate Domain
             String[] levels = domain.split("\\.");
 
             if (levels.length == 3) {
@@ -47,12 +61,12 @@ public class RegexReplace {
                 levels[0] = levels[0].replaceAll(".", "*");
             }
 
+            // 3. Rebuild and append
             matcher.appendReplacement(res, name + "@" + String.join(".", levels));
         }
 
         matcher.appendTail(res);
 
         return res.toString();
-
     }
 }
