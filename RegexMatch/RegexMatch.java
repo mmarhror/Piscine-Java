@@ -12,7 +12,7 @@ public class RegexMatch {
         if (s == null) {
             return false;
         }
-        return s.matches("[a-zA-Z]+.*[0-9]") && s.matches("$");
+        return s.matches("[a-zA-Z]+.*[0-9]");
     }
 
     public static boolean containsAtLeast3SuccessiveA(String s) {
