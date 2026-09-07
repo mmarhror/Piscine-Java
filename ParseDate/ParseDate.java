@@ -37,6 +37,7 @@ public class ParseDate {
         stringDate
                 = stringDate
                         .replace(" hours in the evening, ", ":")
+                        .replace(" hours in the morning, ", ":")
                         .replace(" minutes and ", ":")
                         .replace(" seconds", "");
 
