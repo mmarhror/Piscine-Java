@@ -8,14 +8,14 @@ public class RegexReplace {
         if (s == null) {
             return null;
         }
-        return s.replaceAll("(?<=[0-9])(cm|€)(?=\\s)", "");
+        return s.replaceAll("(?<=[0-9])(cm|€)(?=\\s|$)", "");
     }
 
     public static String obfuscateEmail(String s) {
         if (s == null) {
             return null;
         }
-        
+
         String domainPat = "[a-zA-Z0-9.]+";
 
         Pattern pat = Pattern.compile((String.format("([a-zA-Z0-9._-]+)@(%s)", domainPat)));
