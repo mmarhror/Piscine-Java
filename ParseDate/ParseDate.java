@@ -34,13 +34,8 @@ public class ParseDate {
             return null;
         }
 
-        stringDate
-                = stringDate
-                        .replace(" hours in the evening, ", ":")
-                        .replace(" hours in the morning, ", ":")
-                        .replace(" minutes and ", ":")
-                        .replace(" seconds", "");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("hh 'hours' B, mm 'minutes and' ss 'seconds'");
 
-        return LocalTime.parse(stringDate);
+        return LocalTime.parse(stringDate, fmt);
     }
 }
