@@ -2,7 +2,7 @@
 class Excalibur {
 
     String name;
-    public static Excalibur INSTANCE;
+    private static Excalibur INSTANCE;
 
     private Excalibur(String name) {
         this.name = name;
@@ -12,7 +12,7 @@ class Excalibur {
         return name;
     }
 
-    public static Excalibur getInstance() {
+    private static Excalibur getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Excalibur("Sword");
         }
