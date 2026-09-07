@@ -11,6 +11,10 @@ public class ParseDate {
   }
 
   public static LocalDate parseFullTextFormat(String stringDate) {
+    if (stringDate == null) {
+      return null;
+    }
+    
     DateTimeFormatter fmt =
         new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
