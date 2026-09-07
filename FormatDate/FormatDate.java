@@ -11,7 +11,7 @@ public class FormatDate {
         if (dateTime == null) {
             return null;
         }
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("'Le 'dd MMMM' de l''an' yyyy 'à' HH'h'mm'm et 'ss's'", Locale.FRENCH);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("'Le 'dd MMM' de l''an' yyyy 'à' HH'h'mm'm et 'ss's'", Locale.FRENCH);
 
         return dateTime.format(fmt);
     }
@@ -32,3 +32,7 @@ public class FormatDate {
         return time.toString();
     }
 }
+
+
+// Le 27 oct. de l'an 2021 à 16h52m et 31s
+// Le 27 octobre de l'an 2021 à 16h52m et 31s
