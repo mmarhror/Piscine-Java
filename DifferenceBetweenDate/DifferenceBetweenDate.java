@@ -21,7 +21,11 @@ public class DifferenceBetweenDate {
             return null;
         }
 
-        return Period.between(date1, date2).normalized();
+        if (date1.isAfter(date2)) {
+            return Period.between(date2, date1);
+        }
+
+        return Period.between(date1, date2);
     }
 
     public static Long numberOfHoursBetweenDateTime(LocalDateTime dateTime1, LocalDateTime dateTime2) {
