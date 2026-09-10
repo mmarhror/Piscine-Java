@@ -1,9 +1,9 @@
 
 class DriverFactory {
 
-    Driver getDriver(String type) {
+    static Driver getDriver(String type) {
         return switch (type) {
-            case "CarDriver" ->
+            case "Car" ->
                 new CarDriver();
             case "Plane" ->
                 new PlaneDriver();
